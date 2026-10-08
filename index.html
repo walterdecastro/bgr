@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PasteShare - Compartilhe textos facilmente</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 2rem 0;
+    }
+    .card {
+      border: none;
+      border-radius: 1rem;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    }
+    .code-box {
+      font-size: 1.6rem;
+      font-weight: bold;
+      letter-spacing: 4px;
+      background: #f8f9fa;
+      padding: .75rem 1.25rem;
+      border-radius: .5rem;
+      border: 2px dashed #667eea;
+      color: #4c51bf;
+      user-select: all;
+    }
+    textarea {
+      resize: vertical;
+      min-height: 220px;
+      font-family: 'Courier New', monospace;
+    }
+    .brand-icon {
+      font-size: 2.5rem;
+      color: #667eea;
+    }
+  </style>
+</head>
+<body>
+  <div class="container" style="max-width: 780px;">
+
+    <div class="text-center text-white mb-4">
+      <i class="bi bi-clipboard-check brand-icon text-white"></i>
+      <h1 class="fw-bold mt-2">PasteShare</h1>
+      <p class="opacity-75">Cole um texto, gere um código e acesse de qualquer computador.</p>
+    </div>
+
+    <!-- ABA: CRIAR -->
+    <div id="view-create" class="card p-4">
+      <h4 class="mb-3"><i class="bi bi-pencil-square"></i> Criar novo compartilhamento</h4>
+
+      <label for="textInput" class="form-label fw-semibold">Seu texto</label>
+      <textarea id="textInput" class="form-control mb-3" placeholder="Cole ou digite aqui o texto que deseja compartilhar..."></textarea>
+
+      <button id="btnCreate" class="btn btn-primary w-100 py-2">
+        <i class="bi bi-magic"></i> Gerar código de compartilhamento
+      </button>
+
+      <div id="resultCreate" class="mt-4 d-none text-center">
+        <p class="mb-2 fw-semibold">✅ Compartilhamento criado! Use este código no outro computador:</p>
+        <div class="d-flex justify-content-center align-items-center gap-2 flex-wrap">
+          <span id="generatedCode" class="code-box"></span>
+          <button id="btnCopyCode" class="btn btn-outline-secondary" title="Copiar código">
+            <i class="bi bi-clipboard"></i>
+          </button>
+        </div>
+        <small class="text-muted d-block mt-3">
+          O texto ficará disponível por <b>30 dias</b>.
+        </small>
+        <button id="btnNew" class="btn btn-sm btn-link mt-2">Criar outro</button>
+      </div>
+    </div>
+
+    <!-- ABA: RECUPERAR -->
+    <div id="view-fetch" class="card p-4 mt-3">
+      <h4 class="mb-3"><i class="bi bi-box-arrow-in-down"></i> Recuperar texto</h4>
+
+      <label for="codeInput" class="form-label fw-semibold">Digite o código</label>
+      <div class="input-group mb-3">
+        <input id="codeInput" type="text" class="form-control text-uppercase" 
+               placeholder="Ex: ABC123" maxlength="6" autocomplete="off">
+        <button id="btnFetch" class="btn btn-success">
+          <i class="bi bi-search"></i> Buscar
+        </button>
+      </div>
+
+      <div id="fetchResult" class="d-none">
+        <label class="form-label fw-semibold">Texto recuperado:</label>
+        <textarea id="fetchedText" class="form-control mb-2" readonly></textarea>
+        <button id="btnCopyText" class="btn btn-outline-primary">
+          <i class="bi bi-clipboard-check"></i> Copiar texto
+        </button>
+      </div>
+    </div>
+
+    <p class="text-center text-white-50 mt-4 small">
+      Feito com <i class="bi bi-heart-fill text-danger"></i> · Hospedado no GitHub Pages
+    </p>
+  </div>
+
+  <div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="toast" class="toast align-items-center text-bg-dark border-0" role="alert">
+      <div class="d-flex">
+        <div class="toast-body" id="toastMsg"></div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
